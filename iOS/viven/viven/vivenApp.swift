@@ -8,10 +8,14 @@
 import SwiftUI
 
 @main
-struct vivenApp: App {
+struct VIVENApp: App {
+    private let llmService: any LLMServiceProtocol = MockLLMService()
+    private let haptics = HapticService()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(llmService: llmService, haptics: haptics)
+                .preferredColorScheme(.dark)
         }
     }
 }

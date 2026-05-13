@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    private let llmService: any LLMServiceProtocol
+    private let haptics: HapticService
+
+    init(llmService: any LLMServiceProtocol, haptics: HapticService) {
+        self.llmService = llmService
+        self.haptics = haptics
+    }
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        MainTabView(llmService: llmService, haptics: haptics)
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(llmService: MockLLMService(), haptics: HapticService())
 }
